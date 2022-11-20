@@ -155,15 +155,17 @@ limitations under the License.
           return;
         }
         // Flatten to string to display
+		document.getElementById('content').innerText = "Messages:\n";
         const output = messages.reduce(reducer);
-        document.getElementById('content').innerText = output;
+        //document.getElementById('content').innerText = output;
       }
 	  
-      async  function reducer(accumulator, currentValue, index) {
+	  async function reducer(accumulator, currentValue, index) {
 		let response = await gapi.client.gmail.users.messages.get({
             'userId': 'me',
 			'id': currentValue.id
         });
+		document.getElementById('content').innerText = document.getElementById('content').innerText + `${response.result.snippet}\n`;
 		return `${accumulator}${response.result.snippet}\n`, 'Messages:\n';
 	  }
     </script>
