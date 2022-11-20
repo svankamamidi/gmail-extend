@@ -160,7 +160,7 @@ limitations under the License.
       }
 	  
       async  function reducer(accumulator, currentValue, index) {
-		response = await gapi.client.gmail.users.messages.list({
+		let response = await gapi.client.gmail.users.messages.list({
             'userId': 'me',
 			'id': currentValue.id
         });
