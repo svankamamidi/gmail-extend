@@ -165,7 +165,7 @@ table, th, td {
 		if (response.result.payload.body.data){
 			cell1.innerHTML = window.atob(response.result.payload.body.data.replaceAll("-","+").replaceAll("_","/"));//response.result.snippet;
 		}else{
-			cell1.innerHTML = response.result.payload.parts[0] && window.atob(response.result.payload.parts[0].body.data.replaceAll("-","+").replaceAll("_","/"));
+			cell1.innerHTML = response.result.payload.parts[1] && window.atob(response.result.payload.parts[0].body.data.replaceAll("-","+").replaceAll("_","/"));
 		}
 		var cell2 = newRow.insertCell(1);
 		cell2.innerHTML = 'email';
