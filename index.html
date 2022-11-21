@@ -26,7 +26,13 @@ limitations under the License.
     <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
     <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
 
-    <pre id="content" style="white-space: pre-wrap;"></pre>
+	<table id="main-table" class="main-table">
+		<tr>
+			<th>Message</th>
+			<th>Dated</th>
+		</tr>
+	</table>
+    <!--pre id="content" style="white-space: pre-wrap;"></pre-->
 
     <script type="text/javascript">
       /* exported gapiLoaded */
@@ -156,7 +162,7 @@ limitations under the License.
         }
         // Flatten to string to display
 		document.getElementById('content').innerText = "Messages:\n";
-        const output = messages.reduce(reducer);
+        messages.reduce(reducer);
         //document.getElementById('content').innerText = output;
       }
 	  
@@ -165,9 +171,15 @@ limitations under the License.
             'userId': 'me',
 			'id': currentValue.id
         });
-		document.getElementById('content').innerText = document.getElementById('content').innerText + `${response.result.snippet}\n`;
-		return `${accumulator}${response.result.snippet}\n`, 'Messages:\n';
+		var newRow = $("#main-table table")[0].insertRow(-1);
+		var cell1 = newRow.insertCell(0);
+		cell1.innerHTML = response.result.snippet;
+		var cell2 = newRow.insertCell(1);
+		cell2.innerHTML = 'email';
+		//document.getElementById('content').innerText = document.getElementById('content').innerText + `${response.result.snippet}\n`;
+		//return `${accumulator}${response.result.snippet}\n`, 'Messages:\n';
 	  }
+	  
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
