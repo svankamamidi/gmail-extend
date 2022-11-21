@@ -3,6 +3,7 @@
 <style>
 table, th, td {
   border: 1px solid black;
+  border-collapse: collapse;
 }
 </style>
 <html>
@@ -151,10 +152,7 @@ table, th, td {
           document.getElementById('content').innerText = 'No messages found.';
           return;
         }
-        // Flatten to string to display
-		//document.getElementById('content').innerText = "Messages:\n";
         messages.reduce(reducer);
-        //document.getElementById('content').innerText = output;
       }
 	  
 	  async function reducer(accumulator, currentValue, index) {
@@ -164,11 +162,10 @@ table, th, td {
         });
 		var newRow = $("#main-table")[0].insertRow(-1);
 		var cell1 = newRow.insertCell(0);
-		cell1.innerHTML = response.result.snippet;
+		cell1.innerHTML = window.atob(response.result.raw)//response.result.snippet;
 		var cell2 = newRow.insertCell(1);
 		cell2.innerHTML = 'email';
-		//document.getElementById('content').innerText = document.getElementById('content').innerText + `${response.result.snippet}\n`;
-		//return `${accumulator}${response.result.snippet}\n`, 'Messages:\n';
+		
 	  }
 	  
     </script>
