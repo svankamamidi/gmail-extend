@@ -162,7 +162,7 @@ table, th, td {
         });
 		var newRow = $("#main-table")[0].insertRow(-1);
 		var cell1 = newRow.insertCell(0);
-		cell1.innerHTML = window.atob(response.result.payload.body.data.replaceAll("-","+").replaceAll("_","/"));//response.result.snippet;
+		cell1.innerHTML = window.atob(response.result.payload.body.data && window.atob(response.result.payload.body.data.replaceAll("-","+").replaceAll("_","/"));//response.result.snippet;
 		var cell2 = newRow.insertCell(1);
 		cell2.innerHTML = 'email';
 		
