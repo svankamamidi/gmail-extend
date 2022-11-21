@@ -164,6 +164,8 @@ table, th, td {
 		var cell1 = newRow.insertCell(0);
 		if (response.result.payload.body.data){
 			cell1.innerHTML = window.atob(response.result.payload.body.data.replaceAll("-","+").replaceAll("_","/"));//response.result.snippet;
+		}else{
+			console.log(response);
 		}
 		var cell2 = newRow.insertCell(1);
 		cell2.innerHTML = 'email';
